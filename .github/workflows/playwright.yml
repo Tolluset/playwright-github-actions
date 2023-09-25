@@ -1,15 +1,16 @@
 name: Playwright Tests
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-jobs:
+  schedule:
+    # M-F 0AM UTC+9
+    - cron: '*/5 * * * *'
+
   test:
     timeout-minutes: 60
     runs-on: macos-13 
     steps:
     - uses: actions/checkout@v4
+      with: ${{ secrets.COMMIT_TOKEN }}
+        
     - uses: actions/setup-node@v3
       with:
         node-version: 18
