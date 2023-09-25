@@ -1,7 +1,7 @@
 name: test
 
-on:
-  schedule:
+# on:
+#   schedule:
     # M-F 0AM UTC+9
     # - cron: '0 15 * * 1-5'
 

@@ -23,11 +23,13 @@ jobs:
     - run: yarn playwright install --with-deps
     - run: yarn playwright test -u
     - run: |
-        git add .
         git config --global user.email "github-action@github.com"
         git config --global user.name "github-actions"
-        git commit -am "chore: update scrennshots by github actions"
-        git push origin main
+        git config --global push.autoSetupRemote true
+        git switch -c "snapshots/`date '+%d/%m/%y'`"
+        git add .
+        git commit -am "chore: update image snapshots by github actions"
+        git push
     - uses: actions/upload-artifact@v3
       if: always()
       with:
