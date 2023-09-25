@@ -13,7 +13,8 @@ jobs:
     runs-on: macos-13 
     steps:
     - uses: actions/checkout@v4
-      with: 
+      with:
+        respository: tolluset/playwright-github-action
         token: ${{ secrets.COMMIT_TOKEN }}
         
     - uses: actions/setup-node@v3
