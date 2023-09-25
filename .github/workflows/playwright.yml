@@ -14,18 +14,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: tolluset/playwright-github-action
         token: ${{ secrets.COMMIT_TOKEN }}
         
     - uses: actions/setup-node@v3
       with:
         node-version: 18
         cache: 'yarn'
-    - name: Install dependencies
       run: yarn
-    - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
-    - name: Run Playwright tests
       run: yarn playwright test -u
     - run: |
         git add .
