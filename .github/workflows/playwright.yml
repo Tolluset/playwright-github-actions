@@ -4,6 +4,7 @@ on:
     # M-F 0AM UTC+9
     - cron: '*/5 * * * *'
 
+jobs:
   test:
     timeout-minutes: 60
     runs-on: macos-13 
