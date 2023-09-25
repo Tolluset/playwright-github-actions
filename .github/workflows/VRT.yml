@@ -1,0 +1,24 @@
+name: VRT
+
+on:
+  schedule:
+    # M-F 0AM UTC+9
+    - cron: '0 15 * * 1-5'
+
+
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn -v
+
