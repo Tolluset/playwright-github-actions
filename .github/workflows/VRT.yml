@@ -4,7 +4,7 @@ on:
   schedule:
     # M-F 0AM UTC+9
     # - cron: '0 15 * * 1-5'
-    - cron: '55 5 * * 1-5'
+    - cron: '7 6 * * 1-5'
 
 jobs:
   cron:
