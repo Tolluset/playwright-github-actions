@@ -3,9 +3,9 @@ on:
   push:
     tags:
       - v0.*
-  schedule:
-    # M-F 0AM UTC+9
-    - cron: '*/5 * * * *'
+  # schedule:
+  #   # M-F 0AM UTC+9
+  #   - cron: '*/5 * * * *'
 
 jobs:
   test:
@@ -14,15 +14,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.COMMIT_TOKEN }}
-        
+        token: ${{ secrets.COMMIT_TOKEN }}  
     - uses: actions/setup-node@v3
       with:
         node-version: 18
         cache: 'yarn'
-      run: yarn
-      run: yarn playwright install --with-deps
-      run: yarn playwright test -u
+    - run: yarn
+    - run: yarn playwright install --with-deps
+    - run: yarn playwright test -u
     - run: |
         git add .
         git config --global user.email "github-action@github.com"
