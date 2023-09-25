@@ -1,4 +1,4 @@
-name: VRT
+name: test
 
 on:
   schedule:
