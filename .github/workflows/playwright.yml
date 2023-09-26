@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.COMMIT_TOKEN }}
+          token: ${{ secrets.SNAPSHOTS_TOKEN }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -35,7 +35,7 @@ jobs:
           gh pr create --fill
         if: ${{ failure() }}
         env:
-          GH_TOKEN: ${{ secrets.COMMIT_TOKEN }}
+          GH_TOKEN: ${{ secrets.SNAPSHOTS_TOKEN }}
       - uses: actions/upload-artifact@v3
         if: ${{ !cancelled() }}
         with:
@@ -46,14 +46,17 @@ jobs:
       #   if: ${{ success() }}
       #   env:
       #     SLACK_WEBHOOK_URL: ${{ secret.SLACK_WEBHOOK_URL }}
+      #      repo: ${{ github.repository }}
+      #      ref: ${{ github.ref }}
+      #      link: ${{ github.server_url }}
       #   with:
       #     payload: |
       #       {
       #         "type": "success",
-      #         "repo": ${{ github.repository }}
-      #         "ref": ${{ github.ref }}
-      #         "link": ${{ github.server.url }}
-      #       }
+      #         "repo": $repo,
+      #         "ref": $ref,
+      #         "link": $link
+#     #       }
       # - uses: slackapi/slack-github-action@v1.24.0
       #   if: ${{ failure() }}
       #   env:
@@ -61,8 +64,8 @@ jobs:
       #   with:
       #     payload: |
       #       {
-      #         "type": "success",
-      #         "repo": ${{ github.repository }}
-      #         "ref": ${{ github.ref }}
-      #         "link": ${{ github.server.url }}
+      #         "type": "failure",
+      #         "repo": $repo,
+      #         "ref": $ref,
+      #         "link": $link
       #       }
