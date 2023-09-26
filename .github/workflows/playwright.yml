@@ -28,11 +28,11 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
           git config --global push.autoSetupRemote true
-          git switch -c "snapshots/chrome/`date '+%y/%m/%d'`"
+          git switch -c "snapshots/chrome/`date '+%y-%m-%d'`"
           git add .
-          git commit -am "chore: update image snapshots by github actions"
+          git commit -am "[Image Snapshots]: update image snapshots by github actions"
           git push
-          gh pr create --fill
+          gh pr create -t "[Image Snapshots]: Chrome `date '+%y-%m-%d'`" -b ''
         if: ${{ failure() }}
         env:
           GH_TOKEN: ${{ secrets.SNAPSHOTS_TOKEN }}
